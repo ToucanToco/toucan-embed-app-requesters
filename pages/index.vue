@@ -18,27 +18,32 @@
         </select>
       </div>
     </div>
-    <div class="row">
-      <!-- <script
-        async
-        src="https://demo-embed.toucantoco.com/scripts/embedLauncher.js?id=5205487e-6336-410e-bc20-a17c2bd3408b&height=190px&width=320px&view=Tables"
-        type="text/javascript"
-      ></script> -->
-      <!-- <script
-        async
-        src="https://demo-embed.toucantoco.com/scripts/embedLauncher.js?id=835aa132-662e-4343-9915-70a540efc797&height=190px&width=320px&view=Tables"
-        type="text/javascript"
-      ></script>
-      <script
-        async
-        src="https://demo-embed.toucantoco.com/scripts/embedLauncher.js?id=084189cd-ce50-42b3-a65e-68b793d932fb&height=190px&width=320px&view=Tables"
-        type="text/javascript"
-      ></script> -->
-      <!-- <script
-        async
-        src="https://demo-embed.toucantoco.com/scripts/embedLauncher.js?id=96f4ed76-f2a6-4db5-865d-93e36f56951c&token=eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJqb3JkYW4ubG9yaG9AdG91Y2FudG9jby5jb20iLCJpYXQiOjE2MDk4NDMwMDMsImV4cCI6MTYxMjQzNTAwM30.Mn-jJcFUisQ9fDVaopspf96Gbwjl90_q1PQt20KyWRY&height=190px&width=320px&stage=staging&view=Tables&stage=staging"
-        type="text/javascript"
-      ></script> -->
+    <div class="row comment-container">
+      Theses filters aren't element that came from Toucan Toco. They're binded
+      to configured app requesters.
+    </div>
+    <div class="row tiles-container">
+      <div class="tile-container">
+        <script
+          async
+          src="https://demo-embed.toucantoco.com/scripts/embedLauncher.js?id=5205487e-6336-410e-bc20-a17c2bd3408b&view=Tables"
+          type="text/javascript"
+        ></script>
+      </div>
+      <div class="tile-container">
+        <script
+          async
+          src="https://demo-embed.toucantoco.com/scripts/embedLauncher.js?id=835aa132-662e-4343-9915-70a540efc797&view=Tables"
+          type="text/javascript"
+        ></script>
+      </div>
+      <div class="tile-container">
+        <script
+          async
+          src="https://demo-embed.toucantoco.com/scripts/embedLauncher.js?id=084189cd-ce50-42b3-a65e-68b793d932fb&view=Tables"
+          type="text/javascript"
+        ></script>
+      </div>
     </div>
     <div class="row stories-container">
       <div class="story-container">
@@ -140,10 +145,24 @@ export default {
   justify-content: space-between;
 }
 
+.tiles-container {
+  justify-content: space-around;
+  margin-bottom: 40px;
+}
+
 .story-container {
   display: flex;
-  height: 80vh;
+  height: 55vh;
   width: 49%;
+  border: 1px solid #cecece;
+  border-radius: 2px;
+  -webkit-box-shadow: 0 0 8px 0 rgba(0, 0, 0, 0.08);
+  box-shadow: 0 0 8px 0 rgba(0, 0, 0, 0.08);
+}
+
+.tile-container {
+  width: 320px;
+  height: 190px;
   border: 1px solid #cecece;
   border-radius: 2px;
   -webkit-box-shadow: 0 0 8px 0 rgba(0, 0, 0, 0.08);
@@ -153,8 +172,21 @@ export default {
 .filters-container {
   display: flex;
   border: 1px solid #cecece;
-  margin-bottom: 20px;
   height: 60px;
+}
+
+.comment-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 60px;
+  background-color: #f5f5f5;
+  border: 1px solid #cecece;
+  font-weight: bold;
+  color: rgb(64, 64, 64);
+  text-align: center;
+  font-size: 18px;
+  margin-bottom: 20px;
 }
 
 .filter-group {

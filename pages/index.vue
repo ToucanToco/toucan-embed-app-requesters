@@ -152,7 +152,7 @@ export default {
 
 .story-container {
   display: flex;
-  height: 55vh;
+  height: 65vh;
   width: 49%;
   border: 1px solid #cecece;
   border-radius: 2px;
@@ -161,8 +161,8 @@ export default {
 }
 
 .tile-container {
-  width: 320px;
-  height: 190px;
+  width: 440px;
+  height: 240px;
   border: 1px solid #cecece;
   border-radius: 2px;
   -webkit-box-shadow: 0 0 8px 0 rgba(0, 0, 0, 0.08);

@@ -17,49 +17,61 @@
           </option>
         </select>
       </div>
+      <button class="switch" @click="switchTo">
+        Switch to {{ switchLabel }}
+      </button>
     </div>
     <div class="row comment-container">
       Theses filters aren't element that came from Toucan Toco. They're binded
       to configured app requesters.
     </div>
-    <div class="row tiles-container">
-      <div class="tile-container">
-        <script
-          async
-          src="https://demo-embed.toucantoco.com/scripts/embedLauncher.js?id=5205487e-6336-410e-bc20-a17c2bd3408b&view=Tables"
-          type="text/javascript"
-        ></script>
+    <div v-if="!isDashboardBuilderDisplayed" class="multiple-stories">
+      <div class="row tiles-container">
+        <div class="tile-container">
+          <script
+            async
+            src="https://demo-embed.toucantoco.com/scripts/embedLauncher.js?id=5205487e-6336-410e-bc20-a17c2bd3408b&view=Tables"
+            type="text/javascript"
+          ></script>
+        </div>
+        <div class="tile-container">
+          <script
+            async
+            src="https://demo-embed.toucantoco.com/scripts/embedLauncher.js?id=835aa132-662e-4343-9915-70a540efc797&view=Tables"
+            type="text/javascript"
+          ></script>
+        </div>
+        <div class="tile-container">
+          <script
+            async
+            src="https://demo-embed.toucantoco.com/scripts/embedLauncher.js?id=084189cd-ce50-42b3-a65e-68b793d932fb&view=Tables"
+            type="text/javascript"
+          ></script>
+        </div>
       </div>
-      <div class="tile-container">
-        <script
-          async
-          src="https://demo-embed.toucantoco.com/scripts/embedLauncher.js?id=835aa132-662e-4343-9915-70a540efc797&view=Tables"
-          type="text/javascript"
-        ></script>
-      </div>
-      <div class="tile-container">
-        <script
-          async
-          src="https://demo-embed.toucantoco.com/scripts/embedLauncher.js?id=084189cd-ce50-42b3-a65e-68b793d932fb&view=Tables"
-          type="text/javascript"
-        ></script>
+      <div class="row stories-container">
+        <div class="story-container">
+          <script
+            async
+            src="https://demo-embed.toucantoco.com/scripts/embedLauncher.js?id=25e3c3d2-589e-4229-9f9c-7ca034a3dc08&view=Tables&title=true"
+            type="text/javascript"
+          ></script>
+        </div>
+        <div class="story-container">
+          <script
+            async
+            src="https://demo-embed.toucantoco.com/scripts/embedLauncher.js?id=c8126df7-b6a7-4f82-a391-8f6f7c027f12&view=Tables&title=true"
+            type="text/javascript"
+          ></script>
+        </div>
       </div>
     </div>
-    <div class="row stories-container">
-      <div class="story-container">
-        <script
-          async
-          src="https://demo-embed.toucantoco.com/scripts/embedLauncher.js?id=25e3c3d2-589e-4229-9f9c-7ca034a3dc08&view=Tables&title=true"
-          type="text/javascript"
-        ></script>
-      </div>
-      <div class="story-container">
-        <script
-          async
-          src="https://demo-embed.toucantoco.com/scripts/embedLauncher.js?id=c8126df7-b6a7-4f82-a391-8f6f7c027f12&view=Tables&title=true"
-          type="text/javascript"
-        ></script>
-      </div>
+    <div v-else>
+      <script
+        async
+        src="https://demo-embed.toucantoco.com/scripts/embedLauncher.js?id=2c5162ae-1a71-4124-b988-137bba5d9f73"
+        type="text/javascript"
+      ></script>
     </div>
   </div>
 </template>
@@ -105,16 +117,24 @@ export default {
       selectedView: 'Tables',
       selectedDate: 'December 2017',
       toucanSDK: null,
+      isDashboardBuilderDisplayed: false,
     }
   },
+  computed: {
+    switchLabel() {
+      return this.isDashboardBuilderDisplayed
+        ? 'in-house dashboard'
+        : 'Dashboard Builder'
+    },
+  },
   watch: {
-    selectedView(newVal, oldVal) {
+    selectedView(newVal) {
       this.toucanSDK.setRequesterValueForAllEmbeds(
         'APP_REPORT_REQUESTER_ID',
         newVal
       )
     },
-    selectedDate(newVal, oldVal) {
+    selectedDate(newVal) {
       this.toucanSDK.setRequesterValueForAllEmbeds(
         'APP_DATE_REQUESTER_ID',
         newVal
@@ -123,6 +143,18 @@ export default {
   },
   mounted() {
     this.toucanSDK = new window.TcTcEmbed()
+  },
+  methods: {
+    switchTo() {
+      // Switch
+      this.isDashboardBuilderDisplayed = !this.isDashboardBuilderDisplayed
+
+      // Reset view
+      this.selectedView = 'Tables'
+
+      // Update date
+      this.selectedDate = 'December 2017'
+    },
   },
 }
 </script>
@@ -197,8 +229,6 @@ export default {
 }
 
 .filter-group__label {
-  /* display: flex;
-  justify-content: start; */
   font-size: 11px;
   margin-left: 5px;
 }
@@ -210,5 +240,29 @@ export default {
   outline: 0;
   margin-top: 5px;
   font-size: 18px;
+}
+
+.switch {
+  margin-left: auto;
+  margin-top: auto;
+  margin-bottom: auto;
+  margin-right: 35px;
+  display: flex;
+  height: 45px;
+  border-radius: 4px;
+  padding: 0 10px;
+  justify-content: center;
+  align-items: center;
+  border: 1px solid #2665a3;
+  color: white;
+  background-color: #2665a3;
+  transition: all 0.3s ease-in;
+  cursor: pointer;
+  outline: none;
+}
+
+.switch:hover {
+  color: #2665a3;
+  background-color: white;
 }
 </style>
